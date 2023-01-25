@@ -1,0 +1,14 @@
+[
+    {
+        "empty": {
+            "email": "",
+            "password": ""
+        }
+    },
+    {
+        "invalid_email": {
+            "email": "notavalidemail",
+            "password": "password"
+        }
+    }
+]
