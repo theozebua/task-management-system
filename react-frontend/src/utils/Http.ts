@@ -23,8 +23,10 @@ export default new (class implements HttpContract {
     return await this.send(endpoint, 'DELETE')
   }
 
-  public setUp(init: RequestInit): void {
+  public setUp(init: RequestInit): this {
     this.init = init
+
+    return this
   }
 
   private async send(endpoint: string, method: string): Promise<Response> {

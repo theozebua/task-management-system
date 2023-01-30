@@ -18,15 +18,13 @@ export default ({ children }: Props): JSX.Element => {
   }
 
   const validateToken = async (): Promise<void> => {
-    Http.setUp({
+    const res = await Http.setUp({
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
       }
-    })
-
-    const res = await Http.get('profile')
+    }).get('profile')
 
     if (res.status === Response.HTTP_UNAUTHORIZED) {
       removeToken()

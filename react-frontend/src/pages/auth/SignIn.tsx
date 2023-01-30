@@ -39,15 +39,13 @@ export default (): JSX.Element => {
       password: passwordRef.current!.value
     }
 
-    Http.setUp({
+    const res = await Http.setUp({
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(credentials)
-    })
-
-    const res = await Http.post('login')
+    }).post('login')
 
     if (res.status === Response.HTTP_UNPROCESSABLE_ENTITY) {
       const validationErrors: ValidationErrorsContract.SignIn.Response =
@@ -68,7 +66,7 @@ export default (): JSX.Element => {
     if (!_.isEmpty(response) && !response.status) {
       setErrors({} as ValidationErrorsContract.SignIn.Errors)
       Swal.fire({
-        title: 'Error',
+        title: 'Sorry',
         icon: 'error',
         text: response.message
       })

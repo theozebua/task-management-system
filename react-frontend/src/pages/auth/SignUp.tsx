@@ -42,15 +42,13 @@ export default (): JSX.Element => {
       password_confirmation: passwordConfirmationRef.current!.value
     }
 
-    Http.setUp({
+    const res = await Http.setUp({
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(registerData)
-    })
-
-    const res = await Http.post('register')
+    }).post('register')
 
     if (res.status === Response.HTTP_UNPROCESSABLE_ENTITY) {
       const validationErrors: ValidationErrorsContract.SignUp.Response =
