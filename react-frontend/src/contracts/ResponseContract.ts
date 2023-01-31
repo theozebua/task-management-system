@@ -1,13 +1,17 @@
 export namespace ResponseContract {
-  export interface SignIn {
+  interface General {
     status: boolean
-    message?: string
-    token?: string
   }
 
-  export interface SignUp {
-    status: boolean
-    user: object
-    token: string
+  export namespace Authentication {
+    export interface SignIn extends General {
+      message?: string
+      token?: string
+    }
+
+    export interface SignUp extends General {
+      user: object
+      token: string
+    }
   }
 }

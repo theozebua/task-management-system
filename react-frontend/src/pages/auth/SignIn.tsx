@@ -17,9 +17,11 @@ export default (): JSX.Element => {
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
 
-  const [response, setResponse] = useState({} as ResponseContract.SignIn)
+  const [response, setResponse] = useState(
+    {} as ResponseContract.Authentication.SignIn
+  )
   const [errors, setErrors] = useState(
-    {} as ValidationErrorsContract.SignIn.Errors
+    {} as ValidationErrorsContract.Authentication.SignIn.Errors
   )
 
   const navigateTo = (url: string): void => {
@@ -34,7 +36,7 @@ export default (): JSX.Element => {
   const signIn = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
 
-    const credentials: RequestContract.SignIn = {
+    const credentials: RequestContract.Authentication.SignIn = {
       email: emailRef.current!.value,
       password: passwordRef.current!.value
     }
@@ -48,23 +50,23 @@ export default (): JSX.Element => {
     }).post('login')
 
     if (res.status === Response.HTTP_UNPROCESSABLE_ENTITY) {
-      const validationErrors: ValidationErrorsContract.SignIn.Response =
+      const validationErrors: ValidationErrorsContract.Authentication.SignIn.Response =
         await res.json()
 
       setErrors({
         email: validationErrors.errors.email,
         password: validationErrors.errors.password
-      } as ValidationErrorsContract.SignIn.Errors)
+      } as ValidationErrorsContract.Authentication.SignIn.Errors)
 
       return
     }
 
-    setResponse((await res.json()) as ResponseContract.SignIn)
+    setResponse((await res.json()) as ResponseContract.Authentication.SignIn)
   }
 
   useEffect((): void => {
     if (!_.isEmpty(response) && !response.status) {
-      setErrors({} as ValidationErrorsContract.SignIn.Errors)
+      setErrors({} as ValidationErrorsContract.Authentication.SignIn.Errors)
       Swal.fire({
         title: 'Sorry',
         icon: 'error',

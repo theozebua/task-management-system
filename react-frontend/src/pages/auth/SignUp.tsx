@@ -18,9 +18,11 @@ export default (): JSX.Element => {
   const passwordRef = useRef<HTMLInputElement>(null)
   const passwordConfirmationRef = useRef<HTMLInputElement>(null)
 
-  const [response, setResponse] = useState({} as ResponseContract.SignUp)
+  const [response, setResponse] = useState(
+    {} as ResponseContract.Authentication.SignUp
+  )
   const [errors, setErrors] = useState(
-    {} as ValidationErrorsContract.SignUp.Errors
+    {} as ValidationErrorsContract.Authentication.SignUp.Errors
   )
 
   const navigateTo = (url: string): void => {
@@ -35,7 +37,7 @@ export default (): JSX.Element => {
   const signUp = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
 
-    const registerData: RequestContract.SignUp = {
+    const registerData: RequestContract.Authentication.SignUp = {
       name: nameRef.current!.value,
       email: emailRef.current!.value,
       password: passwordRef.current!.value,
@@ -51,7 +53,7 @@ export default (): JSX.Element => {
     }).post('register')
 
     if (res.status === Response.HTTP_UNPROCESSABLE_ENTITY) {
-      const validationErrors: ValidationErrorsContract.SignUp.Response =
+      const validationErrors: ValidationErrorsContract.Authentication.SignUp.Response =
         await res.json()
 
       setErrors({
@@ -59,12 +61,12 @@ export default (): JSX.Element => {
         email: validationErrors.errors.email,
         password: validationErrors.errors.password,
         password_confirmation: validationErrors.errors.password_confirmation
-      } as ValidationErrorsContract.SignUp.Errors)
+      } as ValidationErrorsContract.Authentication.SignUp.Errors)
 
       return
     }
 
-    setResponse((await res.json()) as ResponseContract.SignUp)
+    setResponse((await res.json()) as ResponseContract.Authentication.SignUp)
   }
 
   useEffect((): void => {
