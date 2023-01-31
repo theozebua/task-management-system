@@ -1,10 +1,15 @@
-import React from 'react'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import { routes } from './routes/web'
+import { RouterProvider } from 'react-router-dom'
+import 'animate.css'
 import './index.css'
+import TokenContext from './contexts/TokenContext'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <StrictMode>
+    <TokenContext>
+      <RouterProvider router={routes} />
+    </TokenContext>
+  </StrictMode>
 )
