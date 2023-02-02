@@ -12,4 +12,12 @@ export namespace RequestContract {
       password_confirmation: string
     }
   }
+
+  export namespace User {
+    export interface ChangePassword {
+      current_password: string
+      password: string
+      password_confirmation: string
+    }
+  }
 }
