@@ -76,24 +76,23 @@ export default ({ children }: Props): JSX.Element => {
         <nav className='fixed bottom-0 left-0 right-0 bg-white shadow md:hidden'>
           <div className='conainer mx-auto p-4'>
             <ul className='flex items-center justify-between'>
-              <li className='p-2'>
+              <li className='rounded-lg p-2'>
                 <button onClick={() => signOut()}>
                   <ArrowLeftOnRectangleIcon className='h-6 w-6' />
                 </button>
               </li>
               <li
                 className={`${
-                  pathname === '/' && 'rounded-lg bg-gray-900 text-gray-100'
-                } p-2 transition`}>
+                  pathname === '/' && 'bg-gray-900 text-gray-100'
+                } rounded-lg p-2 transition`}>
                 <Link to={'/'}>
                   <ListBulletIcon className='h-6 w-6' />
                 </Link>
               </li>
               <li
                 className={`${
-                  pathname === '/profile' &&
-                  'rounded-lg bg-gray-900 text-gray-100'
-                } p-2 transition`}>
+                  pathname === '/profile' && 'bg-gray-900 text-gray-100'
+                } rounded-lg p-2 transition`}>
                 <Link to={'/profile'}>
                   <UserIcon className='h-6 w-6' />
                 </Link>
