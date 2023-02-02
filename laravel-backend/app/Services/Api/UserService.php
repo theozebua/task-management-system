@@ -26,6 +26,7 @@ class UserService
 
         return [
             'status' => true,
+            'message' => 'Password changed successfully.'
         ];
     }
 }

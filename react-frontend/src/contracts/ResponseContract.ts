@@ -14,4 +14,10 @@ export namespace ResponseContract {
       token: string
     }
   }
+
+  export namespace User {
+    export interface ChangePassword extends General {
+      message: string
+    }
+  }
 }
