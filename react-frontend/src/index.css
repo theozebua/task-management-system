@@ -18,4 +18,12 @@
   .form-input {
     @apply w-full rounded-lg border-2 border-gray-200 transition focus:border-gray-400 focus:ring-transparent;
   }
+
+  .btn {
+    @apply rounded-lg px-4 py-2 font-semibold;
+  }
+
+  .btn.btn-dark {
+    @apply bg-gray-900 text-gray-100;
+  }
 }
