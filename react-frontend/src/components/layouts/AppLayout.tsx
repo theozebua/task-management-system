@@ -1,5 +1,10 @@
 import { ReactNode, useContext, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import {
+  ArrowLeftOnRectangleIcon,
+  ListBulletIcon,
+  UserIcon
+} from '@heroicons/react/24/outline'
 import { TokenContext } from '../../contexts/TokenContext'
 import Http from '../../utils/Http'
 import { ReactComponent as Logo } from '../../assets/react.svg'
@@ -67,6 +72,36 @@ export default ({ children }: Props): JSX.Element => {
         </nav>
       )}
       <div className='container mx-auto p-4'>{children}</div>
+      {!isAuthenticationRoute() && (
+        <nav className='fixed bottom-0 left-0 right-0 bg-white shadow md:hidden'>
+          <div className='conainer mx-auto p-4'>
+            <ul className='flex items-center justify-between'>
+              <li className='p-2'>
+                <button onClick={() => signOut()}>
+                  <ArrowLeftOnRectangleIcon className='h-6 w-6' />
+                </button>
+              </li>
+              <li
+                className={`${
+                  pathname === '/' && 'rounded-lg bg-gray-900 text-gray-100'
+                } p-2 transition`}>
+                <Link to={'/'}>
+                  <ListBulletIcon className='h-6 w-6' />
+                </Link>
+              </li>
+              <li
+                className={`${
+                  pathname === '/profile' &&
+                  'rounded-lg bg-gray-900 text-gray-100'
+                } p-2 transition`}>
+                <Link to={'/profile'}>
+                  <UserIcon className='h-6 w-6' />
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      )}
     </div>
   )
 }
