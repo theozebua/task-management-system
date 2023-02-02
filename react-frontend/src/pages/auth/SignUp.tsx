@@ -92,7 +92,7 @@ export default (): JSX.Element => {
               <span className='mb-2 block'>Name</span>
               <input
                 ref={nameRef}
-                className='w-full rounded-lg border p-2 outline-none focus:ring-2 focus:ring-gray-200'
+                className='form-input'
                 type='text'
                 autoFocus
               />
@@ -104,7 +104,7 @@ export default (): JSX.Element => {
               <span className='mb-2 block'>Email Address</span>
               <input
                 ref={emailRef}
-                className='w-full rounded-lg border p-2 outline-none focus:ring-2 focus:ring-gray-200'
+                className='form-input'
                 type='email'
               />
               {errors.email && (
@@ -115,7 +115,7 @@ export default (): JSX.Element => {
               <span className='mb-2 block'>Password</span>
               <input
                 ref={passwordRef}
-                className='w-full rounded-lg border p-2 outline-none focus:ring-2 focus:ring-gray-200'
+                className='form-input'
                 type='password'
               />
               {errors.password && (
@@ -126,7 +126,7 @@ export default (): JSX.Element => {
               <span className='mb-2 block'>Confirm Password</span>
               <input
                 ref={passwordConfirmationRef}
-                className='w-full rounded-lg border p-2 outline-none focus:ring-2 focus:ring-gray-200'
+                className='form-input'
                 type='password'
               />
               {errors.password_confirmation && (

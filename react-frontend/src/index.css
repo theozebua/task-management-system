@@ -13,3 +13,9 @@
     @apply bg-gray-100 text-gray-900;
   }
 }
+
+@layer components {
+  .form-input {
+    @apply w-full rounded-lg border-2 border-gray-200 transition focus:border-gray-400 focus:ring-transparent;
+  }
+}
