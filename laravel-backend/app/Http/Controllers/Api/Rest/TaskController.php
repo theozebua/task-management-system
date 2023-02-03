@@ -11,8 +11,6 @@ use App\Models\Task;
 use App\Repositories\Api\Contracts\Rest\RepositoryContract;
 use Illuminate\Http\{JsonResponse, Response};
 use Illuminate\Support\Facades\Auth;
-use InvalidArgumentException;
-use ValueError;
 
 class TaskController extends Controller
 {
@@ -28,11 +26,7 @@ class TaskController extends Controller
 
     public function store(StoreTaskRequest $request): JsonResponse
     {
-        try {
-            return response()->json($this->taskRepository->store($request->validated()), Response::HTTP_CREATED);
-        } catch (ValueError $e) {
-            return $this->returnFailedJsonResponse($e->getMessage(), Response::HTTP_BAD_REQUEST);
-        }
+        return response()->json($this->taskRepository->store($request->validated()), Response::HTTP_CREATED);
     }
 
     public function show(Task $task): TaskResource
@@ -42,29 +36,11 @@ class TaskController extends Controller
 
     public function update(UpdateTaskRequest $request, Task $task): JsonResponse
     {
-        try {
-            return response()->json($this->taskRepository->update($request->validated(), $task), Response::HTTP_OK);
-        } catch (InvalidArgumentException $e) {
-            return $this->returnFailedJsonResponse($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
-        } catch (ValueError $e) {
-            return $this->returnFailedJsonResponse($e->getMessage(), Response::HTTP_BAD_REQUEST);
-        }
+        return response()->json($this->taskRepository->update($request->validated(), $task), Response::HTTP_OK);
     }
 
     public function destroy(Task $task): JsonResponse
     {
-        try {
-            return response()->json($this->taskRepository->destroy($task), Response::HTTP_NO_CONTENT);
-        } catch (InvalidArgumentException $e) {
-            return $this->returnFailedJsonResponse($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    private function returnFailedJsonResponse(string $message, int $code): JsonResponse
-    {
-        return response()->json([
-            'status'  => false,
-            'message' => $message,
-        ], $code);
+        return response()->json($this->taskRepository->destroy($task), Response::HTTP_NO_CONTENT);
     }
 }

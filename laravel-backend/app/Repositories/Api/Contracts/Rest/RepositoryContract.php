@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Repositories\Api\Contracts\Rest;
 
 use Illuminate\Database\Eloquent\Model;
-use InvalidArgumentException;
 
 interface RepositoryContract
 {
@@ -24,8 +23,6 @@ interface RepositoryContract
      * @param array<string, mixed>
      * @param Model $model
      *
-     * @throws InvalidArgumentException
-     *
      * @return array
      */
     public function update(array $data, $model): array;
@@ -34,8 +31,6 @@ interface RepositoryContract
      * Remove the specified resource from storage.
      *
      * @param Model $model
-     *
-     * @throws InvalidArgumentException
      *
      * @return array
      */
