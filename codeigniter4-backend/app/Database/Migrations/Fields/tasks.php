@@ -29,7 +29,7 @@ return [
         'type'           => 'DATE'
     ],
 
-    'priorty'     => [
+    'priority'     => [
         'type'           => 'INT',
     ],
 
