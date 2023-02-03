@@ -8,7 +8,6 @@ use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use App\Repositories\Api\Contracts\Rest\RepositoryContract;
 use Illuminate\Support\Facades\Auth;
-use InvalidArgumentException;
 
 class TaskRepository implements RepositoryContract
 {
@@ -26,8 +25,6 @@ class TaskRepository implements RepositoryContract
 
     public function update(array $data, $model): array
     {
-        $this->validateModel($model, Task::class);
-
         $data['updated_at'] = now();
 
         /** @var Task $model */
@@ -39,19 +36,10 @@ class TaskRepository implements RepositoryContract
 
     public function destroy($model): array
     {
-        $this->validateModel($model, Task::class);
-
         /** @var Task $model */
         return [
             'status'  => (bool) $model->delete(),
             'message' => 'Failed to delete the data.',
         ];
-    }
-
-    private function validateModel(mixed $model, string $class): void
-    {
-        if (!$model instanceof $class) {
-            throw new InvalidArgumentException(sprintf("%s is not an instance of %s", $model, $class));
-        }
     }
 }
