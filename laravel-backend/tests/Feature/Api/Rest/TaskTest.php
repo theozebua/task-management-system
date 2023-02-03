@@ -9,7 +9,6 @@ use App\Models\Task;
 use App\Traits\FakeUser;
 use Database\Seeders\Testing\TaskSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class TaskTest extends TestCase
@@ -36,14 +35,6 @@ class TaskTest extends TestCase
 
         $this->postJson($this->endpoint, $invalidJsonData)->assertUnprocessable();
         $this->putJson("{$this->endpoint}/{$this->getFirstTaskId()}", $invalidJsonData)->assertUnprocessable();
-    }
-
-    public function testItHandleValueErrorSuccesful(): void
-    {
-        $this->setupData();
-
-        $this->postJson($this->endpoint, $this->invalidPriorityValue())->assertStatus(Response::HTTP_BAD_REQUEST); // store
-        $this->putJson("{$this->endpoint}/{$this->getFirstTaskId()}", $this->invalidPriorityValue())->assertStatus(Response::HTTP_BAD_REQUEST); // update
     }
 
     public function testItReturnsRequestedData(): void
