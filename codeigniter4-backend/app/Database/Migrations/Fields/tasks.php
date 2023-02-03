@@ -29,7 +29,7 @@ return [
         'type'           => 'DATE'
     ],
 
-    'priority'     => [
+    'priority'    => [
         'type'           => 'INT',
     ],
 
@@ -37,5 +37,17 @@ return [
         'type'           => 'TINYINT',
         'constraint'     => 1,
         'default'        => false,
+    ],
+
+    'created_at'  => [
+        'type'           => 'TIMESTAMP',
+        'null'           => true,
+        'default'        => null,
+    ],
+
+    'updated_at'  => [
+        'type'           => 'TIMESTAMP',
+        'null'           => true,
+        'default'        => null,
     ],
 ];
