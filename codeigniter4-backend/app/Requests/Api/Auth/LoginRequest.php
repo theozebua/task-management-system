@@ -4,19 +4,16 @@ declare(strict_types=1);
 
 namespace App\Requests\Api\Auth;
 
-use App\Contracts\FormRequest;
+use App\Abstracts\FormRequest;
 
-class LoginRequest implements FormRequest
+class LoginRequest extends FormRequest
 {
-    public function validate(): array
-    {
-        return [
-            'rules'    => $this->rules(),
-            'messages' => $this->messages(),
-        ];
-    }
+    protected array $attributes = [
+        'email',
+        'password',
+    ];
 
-    private function rules(): array
+    protected function rules(): array
     {
         return [
             'email'    => ['required', 'valid_email'],
@@ -24,16 +21,11 @@ class LoginRequest implements FormRequest
         ];
     }
 
-    private function messages(): array
+    protected function label(): array
     {
         return [
-            'email'    => [
-                'required'    => 'The Email Address field is required.',
-                'valid_email' => 'The Email Address must be a valid email address.',
-            ],
-            'password' => [
-                'required'    => 'The Email Address field is required.',
-            ],
+            'email'    => 'Email Address',
+            'password' => 'Password',
         ];
     }
 }

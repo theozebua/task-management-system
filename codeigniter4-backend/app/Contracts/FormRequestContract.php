@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Contracts;
 
-interface FormRequest
+interface FormRequestContract
 {
     /**
      * Return the validation rules and error messages.
