@@ -21,4 +21,16 @@ class UserModel extends Model implements HasApiTokensContract
         'password',
     ];
     protected $useTimestamps = true;
+    protected $beforeInsert  = ['hashPassword'];
+
+    protected function hashPassword(array $data): array
+    {
+        if (!isset($data['data']['password'])) {
+            return $data;
+        }
+
+        $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+
+        return $data;
+    }
 }
