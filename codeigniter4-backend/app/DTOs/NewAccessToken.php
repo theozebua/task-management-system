@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\DTOs;
 
-use App\Contracts\Arrayable;
-use App\Contracts\Jsonable;
+use App\Contracts\{Arrayable, Jsonable};
 use App\Entities\PersonalAccessTokenEntity;
 
 use function json_encode;
