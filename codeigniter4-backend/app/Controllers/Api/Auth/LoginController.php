@@ -20,11 +20,9 @@ class LoginController extends BaseController
 {
     use ResponseTrait, Validation;
 
-    private UserModel $userModel;
-
-    public function __construct()
+    public function __construct(private UserModel $userModel = new UserModel())
     {
-        $this->userModel = new UserModel();
+        // 
     }
 
     public function handle(): ResponseInterface
