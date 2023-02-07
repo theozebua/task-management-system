@@ -10,6 +10,7 @@ use App\Models\UserModel;
 use App\Requests\Api\Auth\RegisterRequest;
 use App\Traits\Validation;
 use CodeIgniter\API\ResponseTrait;
+use CodeIgniter\HTTP\ResponseInterface;
 
 use function request;
 use function response;
@@ -23,7 +24,7 @@ class RegisterController extends BaseController
         // 
     }
 
-    public function handle()
+    public function handle(): ResponseInterface
     {
         if (!$this->validation(new RegisterRequest())) {
             return $this->failValidationErrors($this->validator->getErrors());
