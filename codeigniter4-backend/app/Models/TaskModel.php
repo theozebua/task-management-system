@@ -9,7 +9,7 @@ use CodeIgniter\Model;
 
 class TaskModel extends Model
 {
-    protected $table         = 'users';
+    protected $table         = 'tasks';
     protected $returnType    = TaskEntity::class;
     protected $allowedFields = [
         'user_id',

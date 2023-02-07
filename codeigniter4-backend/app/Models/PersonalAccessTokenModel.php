@@ -9,7 +9,7 @@ use CodeIgniter\Model;
 
 class PersonalAccessTokenModel extends Model
 {
-    protected $table         = 'users';
+    protected $table         = 'personal_access_tokens';
     protected $returnType    = PersonalAccessTokenEntity::class;
     protected $allowedFields = [
         'tokenable_id',
