@@ -34,23 +34,15 @@ class RegisterController extends BaseController
 
         return response()->setJSON([
             'status' => true,
-            'user'   => $this->userResource($user),
+            'user'   => $user,
             'token'  => $this->createAccessToken($user),
         ]);
     }
 
     private function saveUser(): UserEntity
     {
-        return $this->userModel->find($this->userModel->insert(new UserEntity(request()->getJSON(true))));
-    }
-
-    private function userResource(UserEntity $user): array
-    {
-        return [
-            'id'    => $user->id,
-            'name'  => $user->name,
-            'email' => $user->email,
-        ];
+        return $this->userModel->select(['id', 'name', 'email'])
+            ->find($this->userModel->insert(new UserEntity(request()->getJSON(true))));
     }
 
     private function createAccessToken(UserEntity $user): string
