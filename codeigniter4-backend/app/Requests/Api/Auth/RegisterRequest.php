@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    protected function label(): array
+    protected function labels(): array
     {
         return [
             'name'                  => 'Name',

@@ -14,7 +14,7 @@ abstract class FormRequest implements FormRequestContract
     {
         foreach ($this->attributes as $attribute) {
             $rules[$attribute] = [
-                'label' => $this->label()[$attribute],
+                'label' => $this->labels()[$attribute],
                 'rules' => $this->rules()[$attribute],
             ];
         }
@@ -22,7 +22,7 @@ abstract class FormRequest implements FormRequestContract
         return $rules;
     }
 
-    abstract protected function label(): array;
+    abstract protected function labels(): array;
 
     abstract protected function rules(): array;
 }

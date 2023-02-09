@@ -21,7 +21,7 @@ class LoginRequest extends FormRequest
         ];
     }
 
-    protected function label(): array
+    protected function labels(): array
     {
         return [
             'email'    => 'Email Address',
