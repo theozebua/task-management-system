@@ -27,7 +27,7 @@ trait TokenValidation
         $plainTextToken = preg_replace('/Bearer \d+\|/', '', $token);
 
         /** @var PersonalAccessTokenEntity $accessToken */
-        $accessToken = (new PersonalAccessTokenModel())->select(['id', 'token'])->where('token', hash('sha256', $plainTextToken))->first();
+        $accessToken = (new PersonalAccessTokenModel())->select(['id', 'tokenable_id', 'tokenable_type', 'token'])->where('token', hash('sha256', $plainTextToken))->first();
 
         if (!$accessToken) {
             return $this->failUnauthorized();
