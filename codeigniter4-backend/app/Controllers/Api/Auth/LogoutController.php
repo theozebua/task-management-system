@@ -5,17 +5,16 @@ declare(strict_types=1);
 namespace App\Controllers\Api\Auth;
 
 use App\Controllers\BaseController;
+use App\Entities\PersonalAccessTokenEntity;
 use App\Models\PersonalAccessTokenModel;
-use App\Traits\TokenValidation;
-use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\HTTP\ResponseInterface;
 
+use function request;
 use function response;
+use function unserialize;
 
 class LogoutController extends BaseController
 {
-    use ResponseTrait, TokenValidation;
-
     public function __construct(private PersonalAccessTokenModel $personalAccessTokenModel = new PersonalAccessTokenModel())
     {
         //
@@ -23,13 +22,12 @@ class LogoutController extends BaseController
 
     public function handle(): ResponseInterface
     {
-        $token = $this->validateToken();
+        /** @var PersonalAccessTokenEntity $accessToken */
+        $accessToken = unserialize(request()->header('access-token')->getValue());
 
-        if ($token instanceof ResponseInterface) {
-            return $token;
-        }
-
-        $this->personalAccessTokenModel->delete($token->id);
+        $this->personalAccessTokenModel
+            ->where('tokenable_type', $accessToken->tokenable_type)
+            ->delete($accessToken->tokenable_id);
 
         return response()->setStatusCode(response()::HTTP_NO_CONTENT);
     }

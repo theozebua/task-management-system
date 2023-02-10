@@ -17,10 +17,10 @@ $apiPrefix    = '/api/';
 $routes->group($apiPrefix, ['namespace' => "{$apiNamespace}\Auth"], static function () use ($routes) {
     $routes->post('login', 'LoginController::handle');
     $routes->post('register', 'RegisterController::handle');
-    $routes->post('logout', 'LogoutController::handle');
+    $routes->post('logout', 'LogoutController::handle', ['filter' => 'validatetoken']);
 });
 
-$routes->group($apiPrefix, ['namespace' => "{$apiNamespace}\User"], static function () use ($routes) {
+$routes->group($apiPrefix, ['namespace' => "{$apiNamespace}\User", 'filter' => 'validatetoken'], static function () use ($routes) {
     $routes->get('profile', 'ProfileController::handle');
     $routes->put('change-password', 'ChangePasswordController::handle');
 });

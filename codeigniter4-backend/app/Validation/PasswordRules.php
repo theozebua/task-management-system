@@ -1,26 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Validation;
 
-use App\Entities\UserEntity;
-use App\Traits\TokenValidation;
-use CodeIgniter\HTTP\ResponseInterface;
+use App\Entities\PersonalAccessTokenEntity;
+
+use function password_verify;
+use function request;
+use function unserialize;
 
 class PasswordRules
 {
-    use TokenValidation;
-
     public function current_password(string $currentPassword): bool
     {
-        $token = $this->validateToken();
+        /** @var PersonalAccessTokenEntity $accessToken */
+        $accessToken = unserialize(request()->header('access-token')->getValue());
 
-        if ($token instanceof ResponseInterface) {
-            return $token;
-        }
-
-        /** @var UserEntity $user */
-        $user = (new $token->tokenable_type)->select(['password'])->find($token->tokenable_id);
-
-        return password_verify($currentPassword, $user->password);
+        return password_verify(
+            $currentPassword,
+            (new $accessToken->tokenable_type)
+                ->select(['password'])
+                ->find($accessToken->tokenable_id)
+                ->password
+        );
     }
 }

@@ -5,31 +5,25 @@ declare(strict_types=1);
 namespace App\Controllers\Api\User;
 
 use App\Controllers\BaseController;
-use App\Entities\UserEntity;
-use App\Traits\TokenValidation;
-use CodeIgniter\API\ResponseTrait;
+use App\Entities\PersonalAccessTokenEntity;
 use CodeIgniter\HTTP\ResponseInterface;
 
+use function request;
 use function response;
+use function unserialize;
 
 class ProfileController extends BaseController
 {
-    use ResponseTrait, TokenValidation;
-
     public function handle(): ResponseInterface
     {
-        $token = $this->validateToken();
-
-        if ($token instanceof ResponseInterface) {
-            return $token;
-        }
-
-        /** @var UserEntity $user */
-        $user = (new $token->tokenable_type)->select(['id', 'name', 'email'])->find($token->tokenable_id);
+        /** @var PersonalAccessTokenEntity $accessToken */
+        $accessToken = unserialize(request()->header('access-token')->getValue());
 
         return response()->setJSON([
             'status' => true,
-            'user'   => $user,
+            'user'   => (new $accessToken->tokenable_type)
+                ->select(['id', 'name', 'email'])
+                ->find($accessToken->tokenable_id),
         ]);
     }
 }
