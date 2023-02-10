@@ -7,13 +7,14 @@ namespace App\Controllers\Api\User;
 use App\Controllers\BaseController;
 use App\Entities\UserEntity;
 use App\Traits\TokenValidation;
+use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\HTTP\ResponseInterface;
 
 use function response;
 
 class ProfileController extends BaseController
 {
-    use TokenValidation;
+    use ResponseTrait, TokenValidation;
 
     public function handle(): ResponseInterface
     {
