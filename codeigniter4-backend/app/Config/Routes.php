@@ -4,20 +4,23 @@ declare(strict_types=1);
 
 namespace Config;
 
-use App\Controllers\Api\Auth\{LoginController, LogoutController, RegisterController};
-use App\Controllers\Api\User\{ChangePasswordController, ProfileController};
-
 $routes = Services::routes();
 
 // Setup
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 
-// Routes
-$routes->post('/api/login', LoginController::class . '::handle');
-$routes->post('/api/register', RegisterController::class . '::handle');
+$apiNamespace = \App\Controllers\Api::class;
+$apiPrefix    = '/api/';
 
-// TODO: Use token validation here, like a middleware.
-$routes->post('/api/logout', LogoutController::class . '::handle');
-$routes->get('/api/profile', ProfileController::class . '::handle');
-$routes->put('/api/change-password', ChangePasswordController::class . '::handle');
+// Routes
+$routes->group($apiPrefix, ['namespace' => "{$apiNamespace}\Auth"], static function () use ($routes) {
+    $routes->post('login', 'LoginController::handle');
+    $routes->post('register', 'RegisterController::handle');
+    $routes->post('logout', 'LogoutController::handle');
+});
+
+$routes->group($apiPrefix, ['namespace' => "{$apiNamespace}\User"], static function () use ($routes) {
+    $routes->get('profile', 'ProfileController::handle');
+    $routes->put('change-password', 'ChangePasswordController::handle');
+});
