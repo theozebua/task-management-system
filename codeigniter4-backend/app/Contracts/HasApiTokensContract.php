@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Contracts;
 
-use App\Models\PersonalAccessTokenModel;
+use App\Models\PersonalAccessToken;
 use App\DTOs\NewAccessToken;
 use DateTimeInterface;
 
 interface HasApiTokensContract
 {
     /**
-     * Return the instance of `\App\Models\PersonalAccessTokenModel`.
+     * Return the instance of `\App\Models\PersonalAccessToken`.
      * 
-     * @return PersonalAccessTokenModel
+     * @return PersonalAccessToken
      */
-    public function tokens(): PersonalAccessTokenModel;
+    public function tokens(): PersonalAccessToken;
 
     /**
      * Create a token for the specific model

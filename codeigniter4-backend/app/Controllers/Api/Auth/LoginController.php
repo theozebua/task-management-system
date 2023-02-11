@@ -6,7 +6,7 @@ namespace App\Controllers\Api\Auth;
 
 use App\Controllers\BaseController;
 use App\Entities\UserEntity;
-use App\Models\UserModel;
+use App\Models\User;
 use App\Requests\Api\Auth\LoginRequest;
 use App\Traits\Validation;
 use CodeIgniter\API\ResponseTrait;
@@ -20,7 +20,7 @@ class LoginController extends BaseController
 {
     use ResponseTrait, Validation;
 
-    public function __construct(private UserModel $userModel = new UserModel())
+    public function __construct(private User $userModel = new User())
     {
         // 
     }

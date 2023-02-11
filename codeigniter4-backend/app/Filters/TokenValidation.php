@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Filters;
 
 use App\Entities\PersonalAccessTokenEntity;
-use App\Models\PersonalAccessTokenModel;
+use App\Models\PersonalAccessToken;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\{Header, RequestInterface, Response, ResponseInterface};
@@ -48,7 +48,7 @@ class TokenValidation implements FilterInterface
 
         return $token instanceof ResponseInterface
             ? $token
-            : ((new PersonalAccessTokenModel())
+            : ((new PersonalAccessToken())
                 ->select(['id', 'tokenable_id', 'tokenable_type', 'token'])
                 ->where('token', hash('sha256', $token))
                 ->first() ?: $this->failUnauthorized());

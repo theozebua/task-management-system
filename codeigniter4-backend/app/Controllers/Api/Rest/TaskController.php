@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers\Api\Rest;
 
 use App\Entities\{PersonalAccessTokenEntity, TaskEntity, UserEntity};
-use App\Models\TaskModel;
+use App\Models\Task;
 use App\Requests\Api\Rest\{CreateTaskRequest, UpdateTaskRequest};
 use App\Traits\Validation;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -19,13 +19,13 @@ use function ucfirst;
 use function unserialize;
 
 /**
- * @property-read TaskModel $model
+ * @property-read Task $model
  */
 class TaskController extends ResourceController
 {
     use Validation;
 
-    protected $modelName = TaskModel::class;
+    protected $modelName = Task::class;
 
     private PersonalAccessTokenEntity $accessToken;
 
@@ -89,7 +89,7 @@ class TaskController extends ResourceController
         return $this->respondNoContent();
     }
 
-    private function getTasksByAuthId(): TaskModel
+    private function getTasksByAuthId(): Task
     {
         return $this->model->where('user_id', $this->accessToken->tokenable_id);
     }

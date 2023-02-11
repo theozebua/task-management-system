@@ -7,7 +7,7 @@ namespace App\Models;
 use App\Entities\PersonalAccessTokenEntity;
 use CodeIgniter\Model;
 
-class PersonalAccessTokenModel extends Model
+class PersonalAccessToken extends Model
 {
     protected $table         = 'personal_access_tokens';
     protected $returnType    = PersonalAccessTokenEntity::class;
