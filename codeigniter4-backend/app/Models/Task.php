@@ -7,7 +7,7 @@ namespace App\Models;
 use App\Entities\TaskEntity;
 use CodeIgniter\Model;
 
-class TaskModel extends Model
+class Task extends Model
 {
     protected $table         = 'tasks';
     protected $returnType    = TaskEntity::class;

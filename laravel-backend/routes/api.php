@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->group(function () use ($missing) {
     Route::post('/logout', LogoutController::class);
 
     Route::get('/profile', ProfileController::class);
-    Route::post('/change-password', ChangePasswordController::class);
+    Route::put('/change-password', ChangePasswordController::class);
 
     Route::apiResource('/tasks', TaskController::class)->missing($missing);
 });

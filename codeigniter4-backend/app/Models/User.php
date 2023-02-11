@@ -9,7 +9,7 @@ use App\Entities\UserEntity;
 use App\Traits\HasApiTokens;
 use CodeIgniter\Model;
 
-class UserModel extends Model implements HasApiTokensContract
+class User extends Model implements HasApiTokensContract
 {
     use HasApiTokens;
 
