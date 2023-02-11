@@ -6,8 +6,14 @@ use App\Constants\TaskPriorityEnum;
 
 class TaskRules
 {
-    public function valid_priority(string $priority): bool
+    public function valid_priority(string $priority, ?string &$error = null): bool
     {
-        return TaskPriorityEnum::tryFrom((int) $priority) ? true : false;
+        if (!TaskPriorityEnum::tryFrom((int) $priority)) {
+            $error = lang('Validation.valid_priority', ['field' => 'Priority']);
+
+            return false;
+        }
+
+        return true;
     }
 }
