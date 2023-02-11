@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers\Api\User;
 
 use App\Controllers\BaseController;
-use App\Entities\PersonalAccessTokenEntity;
-use App\Entities\UserEntity;
+use App\Entities\{PersonalAccessTokenEntity, UserEntity};
 use App\Requests\Api\User\ChangePasswordRequest;
 use App\Traits\Validation;
 use CodeIgniter\API\ResponseTrait;
