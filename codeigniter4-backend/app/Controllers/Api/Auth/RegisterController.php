@@ -13,7 +13,6 @@ use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\HTTP\ResponseInterface;
 
 use function request;
-use function response;
 
 class RegisterController extends BaseController
 {
@@ -30,11 +29,9 @@ class RegisterController extends BaseController
             return $this->failValidationErrors($this->validator->getErrors());
         }
 
-        $user = $this->saveUser();
-
-        return response()->setJSON([
+        return $this->respondCreated([
             'status' => true,
-            'user'   => $user,
+            'user'   => $user = $this->saveUser(),
             'token'  => $this->createAccessToken($user),
         ]);
     }
