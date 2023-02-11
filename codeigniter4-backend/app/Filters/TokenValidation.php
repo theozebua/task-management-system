@@ -37,7 +37,7 @@ class TokenValidation implements FilterInterface
             : $request->appendHeader('access-token', serialize($accessToken));
     }
 
-    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null): mixed
+    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null): void
     {
         //
     }
