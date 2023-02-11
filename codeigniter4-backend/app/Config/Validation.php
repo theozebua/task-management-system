@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Validation\PasswordRules;
+use App\Validation\TaskRules;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Validation\StrictRules\{CreditCardRules, FileRules, FormatRules, Rules};
 
@@ -14,6 +15,7 @@ class Validation extends BaseConfig
         FileRules::class,
         CreditCardRules::class,
         PasswordRules::class,
+        TaskRules::class,
     ];
 
     public array $templates = [

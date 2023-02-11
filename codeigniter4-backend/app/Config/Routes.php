@@ -24,3 +24,10 @@ $routes->group($apiPrefix, ['namespace' => "{$apiNamespace}\User", 'filter' => '
     $routes->get('profile', 'ProfileController::handle');
     $routes->put('change-password', 'ChangePasswordController::handle');
 });
+
+$routes->resource("{$apiPrefix}tasks", [
+    'except'      => 'new,edit',
+    'placeholder' => '(:num)',
+    'controller'  => "{$apiNamespace}\Rest\TaskController",
+    'filter'      => 'validatetoken',
+]);
