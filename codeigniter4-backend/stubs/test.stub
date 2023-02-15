@@ -1,0 +1,15 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ $namespace }};
+
+use CodeIgniter\Test\CIUnitTestCase;
+
+final class {{ $className }} extends CIUnitTestCase
+{
+    final public function test(): void
+    {
+        //
+    }
+}
