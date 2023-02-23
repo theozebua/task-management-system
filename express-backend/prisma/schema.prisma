@@ -11,45 +11,48 @@ datasource db {
 }
 
 model User {
-  id         BigInt    @default(autoincrement()) @db.UnsignedBigInt
-  name       String    @db.VarChar(255)
-  email      String    @db.VarChar(255)
-  password   String    @db.VarChar(255)
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-  Task       Task[]
+  id        BigInt    @default(autoincrement()) @db.UnsignedBigInt
+  name      String    @db.VarChar(255)
+  email     String    @db.VarChar(255)
+  password  String    @db.VarChar(255)
+  createdAt DateTime? @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  tasks     Task[]
 
   @@id([id])
   @@unique([email])
+  @@map("users")
 }
 
 model PersonalAccessToken {
-  id             BigInt    @default(autoincrement()) @db.UnsignedBigInt
-  tokenable_id   BigInt    @db.UnsignedBigInt
-  tokenable_type String    @db.VarChar(255)
-  name           String    @db.VarChar(255)
-  token          String    @db.VarChar(64)
-  abilities      String?   @db.Text
-  last_used_at   DateTime? @db.Timestamp()
-  expires_at     DateTime? @db.Timestamp()
-  created_at     DateTime? @default(now())
-  updated_at     DateTime? @updatedAt
+  id            BigInt    @default(autoincrement()) @db.UnsignedBigInt
+  tokenableId   BigInt    @map("tokenable_id") @db.UnsignedBigInt
+  tokenableType String    @map("tokenable_type") @db.VarChar(255)
+  name          String    @db.VarChar(255)
+  token         String    @db.VarChar(64)
+  abilities     String?   @db.Text
+  lastUsedAt    DateTime? @map("last_used_at") @db.Timestamp()
+  expiresAt     DateTime? @map("expires_at") @db.Timestamp()
+  createdAt     DateTime? @default(now()) @map("created_at")
+  updatedAt     DateTime? @updatedAt @map("updated_at")
 
   @@id([id])
   @@unique([token])
+  @@map("personal_access_tokens")
 }
 
 model Task {
   id          BigInt    @default(autoincrement()) @db.UnsignedBigInt
-  user_id     BigInt    @db.UnsignedBigInt
-  user        User      @relation(fields: [user_id], references: [id])
+  userId      BigInt    @map("user_id") @db.UnsignedBigInt
+  user        User      @relation(fields: [userId], references: [id])
   title       String    @db.VarChar(255)
   description String?   @db.Text
-  due_date    DateTime  @db.Date
+  dueDate     DateTime  @map("due_date") @db.Date
   priority    Int       @db.Int
-  is_finished Boolean   @db.UnsignedTinyInt
-  created_at  DateTime? @default(now())
-  updated_at  DateTime? @updatedAt
+  isFinished  Boolean   @map("is_finished")
+  createdAt   DateTime? @default(now()) @map("created_at")
+  updatedAt   DateTime? @updatedAt @map("updated_at")
 
   @@id([id])
+  @@map("tasks")
 }
