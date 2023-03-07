@@ -2,8 +2,7 @@
 
 namespace Config;
 
-use App\Validation\PasswordRules;
-use App\Validation\TaskRules;
+use App\Validation\{BooleanRules, PasswordRules, TaskRules};
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Validation\StrictRules\{CreditCardRules, FileRules, FormatRules, Rules};
 
@@ -14,6 +13,7 @@ class Validation extends BaseConfig
         FormatRules::class,
         FileRules::class,
         CreditCardRules::class,
+        BooleanRules::class,
         PasswordRules::class,
         TaskRules::class,
     ];

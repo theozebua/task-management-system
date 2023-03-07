@@ -30,6 +30,7 @@ class UpdateTaskRequest extends FormRequest
             'description' => ['string'],
             'due_date'    => ['required', 'date'],
             'priority'    => ['required', 'integer', 'numeric', new Enum(TaskPriorityEnum::class)],
+            'is_finished' => ['required', 'boolean'],
         ];
     }
 
@@ -40,6 +41,7 @@ class UpdateTaskRequest extends FormRequest
             'description' => 'Description',
             'due_date'    => 'Due Date',
             'priority'    => 'Priority',
+            'is_finished' => 'Is Finished',
         ];
     }
 }
