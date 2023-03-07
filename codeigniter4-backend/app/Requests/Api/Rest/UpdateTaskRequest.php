@@ -13,6 +13,7 @@ class UpdateTaskRequest extends FormRequest
         'description',
         'due_date',
         'priority',
+        'is_finished',
     ];
 
     protected function rules(): array
@@ -22,6 +23,7 @@ class UpdateTaskRequest extends FormRequest
             'description' => [],
             'due_date'    => ['required', 'valid_date'],
             'priority'    => ['required', 'integer', 'numeric', 'valid_priority'],
+            'is_finished' => ['required', 'boolean'],
         ];
     }
 
@@ -32,6 +34,7 @@ class UpdateTaskRequest extends FormRequest
             'description' => 'Description',
             'due_date'    => 'Due Date',
             'priority'    => 'Priority',
+            'is_finished' => 'Is Finished',
         ];
     }
 }

@@ -6,6 +6,7 @@ namespace App\Validation;
 
 use App\Entities\PersonalAccessTokenEntity;
 
+use function lang;
 use function password_verify;
 use function request;
 use function unserialize;
