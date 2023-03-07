@@ -23,7 +23,7 @@ class UpdateTaskRequest extends FormRequest
             'description' => [],
             'due_date'    => ['required', 'valid_date'],
             'priority'    => ['required', 'integer', 'numeric', 'valid_priority'],
-            'is_finished' => ['required', 'boolean'],
+            'is_finished' => ['boolean'],
         ];
     }
 
