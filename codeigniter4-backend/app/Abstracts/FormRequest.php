@@ -12,6 +12,8 @@ abstract class FormRequest implements FormRequestContract
 
     public function validate(): array
     {
+        $rules = [];
+
         foreach ($this->attributes as $attribute) {
             $rules[$attribute] = [
                 'label' => $this->labels()[$attribute],
