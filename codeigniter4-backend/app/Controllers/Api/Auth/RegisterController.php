@@ -12,8 +12,6 @@ use App\Traits\Validation;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\HTTP\ResponseInterface;
 
-use function request;
-
 class RegisterController extends BaseController
 {
     use ResponseTrait, Validation;

@@ -7,8 +7,6 @@ namespace App\DTOs;
 use App\Contracts\{Arrayable, Jsonable};
 use App\Entities\PersonalAccessTokenEntity;
 
-use function json_encode;
-
 class NewAccessToken implements Arrayable, Jsonable
 {
     public function __construct(public PersonalAccessTokenEntity $accessToken, public string $plainTextToken)

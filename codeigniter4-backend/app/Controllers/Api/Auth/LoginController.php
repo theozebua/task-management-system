@@ -12,10 +12,6 @@ use App\Traits\Validation;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\HTTP\ResponseInterface;
 
-use function password_verify;
-use function request;
-use function response;
-
 class LoginController extends BaseController
 {
     use ResponseTrait, Validation;

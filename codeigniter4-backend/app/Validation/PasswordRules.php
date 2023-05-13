@@ -6,11 +6,6 @@ namespace App\Validation;
 
 use App\Entities\PersonalAccessTokenEntity;
 
-use function lang;
-use function password_verify;
-use function request;
-use function unserialize;
-
 class PasswordRules
 {
     public function current_password(string $currentPassword, ?string &$error = null): bool

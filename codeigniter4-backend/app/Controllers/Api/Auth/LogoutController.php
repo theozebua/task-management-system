@@ -9,10 +9,6 @@ use App\Entities\PersonalAccessTokenEntity;
 use App\Models\PersonalAccessToken;
 use CodeIgniter\HTTP\ResponseInterface;
 
-use function request;
-use function response;
-use function unserialize;
-
 class LogoutController extends BaseController
 {
     public function __construct(private PersonalAccessToken $personalAccessTokenModel = new PersonalAccessToken())

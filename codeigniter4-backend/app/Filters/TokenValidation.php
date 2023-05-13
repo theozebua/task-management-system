@@ -10,13 +10,6 @@ use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\{Header, RequestInterface, Response, ResponseInterface};
 
-use function hash;
-use function is_null;
-use function preg_replace;
-use function response;
-use function serialize;
-use function str_contains;
-
 class TokenValidation implements FilterInterface
 {
     use ResponseTrait;

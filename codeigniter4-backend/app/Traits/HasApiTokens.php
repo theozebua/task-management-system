@@ -8,9 +8,6 @@ use App\Models\PersonalAccessToken;
 use App\DTOs\NewAccessToken;
 use DateTimeInterface;
 
-use function hash;
-use function random_string;
-
 trait HasApiTokens
 {
     public function tokens(): PersonalAccessToken

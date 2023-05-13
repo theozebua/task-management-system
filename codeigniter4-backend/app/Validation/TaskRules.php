@@ -4,8 +4,6 @@ namespace App\Validation;
 
 use App\Constants\TaskPriorityEnum;
 
-use function lang;
-
 class TaskRules
 {
     public function valid_priority(string $priority, ?string &$error = null): bool
