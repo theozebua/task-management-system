@@ -8,7 +8,6 @@ use App\Traits\FakeUser;
 use Database\Seeders\Testing\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use function file_get_contents;
 
 class LoginTest extends TestCase
 {
