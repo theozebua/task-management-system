@@ -17,6 +17,8 @@ trait HasApiTokens
 
     public function createToken(string $name, array $morphs, array $abilities = ['*'], DateTimeInterface $expiresAt = null): NewAccessToken
     {
+        helper('text');
+
         $insertedID = $this->tokens()->insert([
             'name'       => $name,
             'token'      => hash('sha256', $plainTextToken = random_string(len: 40)),

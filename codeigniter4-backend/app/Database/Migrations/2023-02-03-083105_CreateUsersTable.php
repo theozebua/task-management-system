@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         $fields = require __DIR__ . "/Fields/{$this->table}.php";
 
         $this->forge->addField($fields)
-            ->addPrimaryKey('id', 'personal_access_token_id')
+            ->addPrimaryKey('id', 'user_id')
             ->createTable($this->table, true);
     }
 
