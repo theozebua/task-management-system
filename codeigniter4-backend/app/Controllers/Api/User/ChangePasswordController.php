@@ -11,10 +11,6 @@ use App\Traits\Validation;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\HTTP\ResponseInterface;
 
-use function request;
-use function response;
-use function unserialize;
-
 class ChangePasswordController extends BaseController
 {
     use ResponseTrait, Validation;

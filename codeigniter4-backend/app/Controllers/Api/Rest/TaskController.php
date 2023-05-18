@@ -12,12 +12,6 @@ use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Pager\Pager;
 use CodeIgniter\RESTful\ResourceController;
 
-use function compact;
-use function request;
-use function strtolower;
-use function ucfirst;
-use function unserialize;
-
 /**
  * @property-read Task $model
  */

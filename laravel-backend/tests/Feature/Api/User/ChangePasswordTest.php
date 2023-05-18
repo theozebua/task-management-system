@@ -16,7 +16,7 @@ class ChangePasswordTest extends TestCase
 
     public function testUnauthorizedUser(): void
     {
-        $this->postJson($this->endpoint, [])->assertUnauthorized();
+        $this->putJson($this->endpoint, [])->assertUnauthorized();
     }
 
     /**
@@ -26,14 +26,14 @@ class ChangePasswordTest extends TestCase
     {
         $this->actingAsFakeUser();
 
-        $this->postJson($this->endpoint, $invalidJsonData)->assertUnprocessable();
+        $this->putJson($this->endpoint, $invalidJsonData)->assertUnprocessable();
     }
 
     public function testChangePasswordIsSuccessful(): void
     {
         $this->actingAsFakeUser();
 
-        $this->postJson($this->endpoint, [
+        $this->putJson($this->endpoint, [
             'current_password'      => $this->password,
             'password'              => $this->password,
             'password_confirmation' => $this->password,

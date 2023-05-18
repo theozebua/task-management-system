@@ -8,10 +8,11 @@ use App\Http\Controllers\Api\Rest\TaskController;
 use App\Repositories\Api\Contracts\Rest\RepositoryContract;
 use App\Repositories\Api\Implementations\Rest\TaskRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * @property-read \Illuminate\Support\Facades\App $app The application instance.
+ * @property-read Application $app The application instance.
  */
 class AppServiceProvider extends ServiceProvider
 {

@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App\Validation;
 
-use function in_array;
-use function lang;
-
 class BooleanRules
 {
     public function boolean(mixed $isFinished, ?string &$error = null): bool

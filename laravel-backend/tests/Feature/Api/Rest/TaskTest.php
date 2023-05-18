@@ -66,6 +66,7 @@ class TaskTest extends TestCase
             'description' => 'Something',
             'due_date'    => now()->addDays(7)->toDateString(),
             'priority'    => collect(TaskPriorityEnum::cases())->random()->value,
+            'is_finished' => fake()->boolean(),
         ];
     }
 

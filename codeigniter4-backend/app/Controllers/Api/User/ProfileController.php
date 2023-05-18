@@ -8,10 +8,6 @@ use App\Controllers\BaseController;
 use App\Entities\PersonalAccessTokenEntity;
 use CodeIgniter\HTTP\ResponseInterface;
 
-use function request;
-use function response;
-use function unserialize;
-
 class ProfileController extends BaseController
 {
     public function handle(): ResponseInterface
