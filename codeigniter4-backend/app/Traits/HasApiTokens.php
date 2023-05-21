@@ -6,6 +6,7 @@ namespace App\Traits;
 
 use App\Models\PersonalAccessToken;
 use App\DTOs\NewAccessToken;
+use App\Helpers\Str;
 use DateTimeInterface;
 
 trait HasApiTokens
@@ -19,7 +20,7 @@ trait HasApiTokens
     {
         $insertedID = $this->tokens()->insert([
             'name'       => $name,
-            'token'      => hash('sha256', $plainTextToken = random_string(len: 40)),
+            'token'      => hash('sha256', $plainTextToken = Str::random(40)),
             'abilities'  => $abilities,
             'expires_at' => $expiresAt,
             ...$morphs,
