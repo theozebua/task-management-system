@@ -17,6 +17,8 @@ trait Validation
      */
     private function validation($request): bool
     {
-        return $this->validate($request->validate());
+        $this->validate($request->validate());
+
+        return $this->validator->withRequest($this->request)->run();
     }
 }

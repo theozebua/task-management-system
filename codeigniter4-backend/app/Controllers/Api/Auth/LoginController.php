@@ -12,16 +12,16 @@ use App\Traits\Validation;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\HTTP\ResponseInterface;
 
-final class LoginController extends BaseController
+class LoginController extends BaseController
 {
     use ResponseTrait, Validation;
 
-    final public function __construct(private User $userModel = new User())
+    public function __construct(private User $userModel = new User())
     {
         // 
     }
 
-    final public function handle(): ResponseInterface
+    public function handle(): ResponseInterface
     {
         if (!$this->validation(new LoginRequest())) {
             return $this->failValidationErrors($this->validator->getErrors());
@@ -39,7 +39,7 @@ final class LoginController extends BaseController
         [
             'email'    => $email,
             'password' => $password,
-        ] = request()->getPost();
+        ] = request()->getJSON(true);
 
         /** @var UserEntity $user */
         $user = $this->userModel->select(['id', 'email', 'password'])->where('email', $email)->first();
