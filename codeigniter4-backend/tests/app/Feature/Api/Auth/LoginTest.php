@@ -37,7 +37,8 @@ final class LoginTest extends CIUnitTestCase
      */
     public function testItReturnsValidationErrors(array $invalidJsonData): void
     {
-        $this->post($this->endpoint, $invalidJsonData)
+        $this->withBodyFormat('json')
+            ->post($this->endpoint, $invalidJsonData)
             ->assertStatus(Response::HTTP_BAD_REQUEST);
     }
 
