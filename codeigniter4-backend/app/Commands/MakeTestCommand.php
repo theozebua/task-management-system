@@ -41,13 +41,11 @@ class MakeTestCommand extends BaseCommand
 
         array_pop($directories);
 
-        if (!file_exists($this->testsPath)) {
-            mkdir($this->testsPath . implode('/', $directories), 0775, true);
-        }
-
         $file = "{$this->testsPath}{$name}.php";
 
         if (!file_exists($file) || (file_exists($file) && $isForced)) {
+            @mkdir($this->testsPath . implode('/', $directories), 0775, true);
+
             $this->create($file, $content, "tests/app/{$name}.php");
 
             return;
