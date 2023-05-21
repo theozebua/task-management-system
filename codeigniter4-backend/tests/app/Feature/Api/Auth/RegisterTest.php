@@ -22,6 +22,16 @@ final class RegisterTest extends CIUnitTestCase
 
     private string $endpoint = '/api/register';
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+    }
+
     /**
      * @dataProvider provideInvalidJsonData
      */
