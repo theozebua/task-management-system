@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Feature\Api\Auth\RegisterTest;
+namespace App\Feature\Api\Auth;
 
 use CodeIgniter\HTTP\Response;
 use CodeIgniter\Test\CIUnitTestCase;
