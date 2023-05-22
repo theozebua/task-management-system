@@ -1,11 +1,10 @@
-import express, { Express, Request, Response } from 'express'
+import express, { Express } from 'express'
+import route from './routes/web'
 
 const app: Express = express()
+const port: number = 8000
 
-app.get('/', (_req: Request, res: Response) => {
-  res.send('Hello World')
-})
-
-app.listen(8000, () => {
-  console.log('Server run on port', 8000)
+app.use(route)
+app.listen(port, () => {
+  console.log(`Server run on http://localhost:${port}`)
 })
