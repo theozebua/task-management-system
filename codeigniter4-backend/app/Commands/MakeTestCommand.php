@@ -41,13 +41,11 @@ class MakeTestCommand extends BaseCommand
 
         array_pop($directories);
 
-        if (!file_exists($this->testsPath)) {
-            mkdir($this->testsPath . implode('/', $directories), 0775, true);
-        }
-
         $file = "{$this->testsPath}{$name}.php";
 
         if (!file_exists($file) || (file_exists($file) && $isForced)) {
+            @mkdir($this->testsPath . implode('/', $directories), 0775, true);
+
             $this->create($file, $content, "tests/app/{$name}.php");
 
             return;
@@ -60,7 +58,7 @@ class MakeTestCommand extends BaseCommand
     {
         $directories = explode('/', $name);
         $className   = end($directories);
-        $namespace   = $this->prepareNamespace($name);
+        $namespace   = $this->prepareNamespace($directories);
         $content     = $this->prepareContent($namespace, $className, $stub);
 
         return [
@@ -69,9 +67,11 @@ class MakeTestCommand extends BaseCommand
         ];
     }
 
-    private function prepareNamespace(string $name): string
+    private function prepareNamespace(array $directories): string
     {
-        return 'App\\' . str_replace('/', '\\', $name);
+        array_pop($directories);
+
+        return 'App\\' . implode('\\', $directories);
     }
 
     private function prepareContent(string $namespace, string $className, string $stub): string
