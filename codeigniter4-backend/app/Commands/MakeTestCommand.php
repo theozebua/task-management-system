@@ -58,7 +58,7 @@ class MakeTestCommand extends BaseCommand
     {
         $directories = explode('/', $name);
         $className   = end($directories);
-        $namespace   = $this->prepareNamespace($name);
+        $namespace   = $this->prepareNamespace($directories);
         $content     = $this->prepareContent($namespace, $className, $stub);
 
         return [
@@ -67,9 +67,11 @@ class MakeTestCommand extends BaseCommand
         ];
     }
 
-    private function prepareNamespace(string $name): string
+    private function prepareNamespace(array $directories): string
     {
-        return 'App\\' . str_replace('/', '\\', $name);
+        array_pop($directories);
+
+        return 'App\\' . implode('\\', $directories);
     }
 
     private function prepareContent(string $namespace, string $className, string $stub): string
