@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Database\Migrations;
+namespace Tests\Support\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateUsersTable extends Migration
+class CreateTasksTable extends Migration
 {
-    private string $table = 'users';
+    private string $table = 'tasks';
 
     public function up(): void
     {
@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         $fields = require __DIR__ . "/Fields/{$this->table}.php";
 
         $this->forge->addField($fields)
-            ->addPrimaryKey('id', 'user_id')
+            ->addPrimaryKey('id', 'task_id')
             ->createTable($this->table, true);
     }
 

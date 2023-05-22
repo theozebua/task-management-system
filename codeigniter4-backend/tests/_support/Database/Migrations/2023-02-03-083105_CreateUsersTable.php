@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Database\Migrations;
+namespace Tests\Support\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
