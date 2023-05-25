@@ -131,3 +131,4 @@ dist
 
 # Prisma
 prisma/migrations
+prisma/*.js
