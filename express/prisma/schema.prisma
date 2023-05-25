@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        BigInt    @default(autoincrement()) @db.UnsignedBigInt
+  name      String
+  email     String
+  password  String
+  tasks     Task[]
+  createdAt DateTime? @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@id([id])
+  @@unique([email])
+  @@map("users")
+}
+
+model PersonalAccessToken {
+  id            BigInt    @default(autoincrement()) @db.UnsignedBigInt
+  tokenableId   BigInt    @map("tokenable_id") @db.UnsignedBigInt
+  tokenableType String    @map("tokenable_type")
+  name          String
+  token         String    @unique @db.VarChar(64)
+  abilities     String    @db.Text
+  lastUsedAt    DateTime?
+  expiresAt     DateTime?
+  createdAt     DateTime? @default(now()) @map("created_at")
+  updatedAt     DateTime? @updatedAt @map("updated_at")
+
+  @@id([id])
+  @@map("personal_access_tokens")
+}
+
+model Task {
+  id          BigInt    @default(autoincrement()) @db.UnsignedBigInt
+  userId      BigInt    @db.UnsignedBigInt
+  user        User      @relation(fields: [userId], references: [id])
+  title       String
+  description String    @db.Text
+  dueDate     DateTime  @db.Date
+  priority    Int
+  is_finsihed Boolean   @db.TinyInt
+  createdAt   DateTime? @default(now()) @map("created_at")
+  updatedAt   DateTime? @updatedAt @map("updated_at")
+
+  @@id([id])
+  @@map("tasks")
+}
